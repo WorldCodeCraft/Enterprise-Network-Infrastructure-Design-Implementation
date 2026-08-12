@@ -74,7 +74,7 @@ Amaç; **ağ segmentasyonu, gateway/internet yedekliliği (Failover), güvenlik 
 ---
 
 ## 📁 Dosya İçeriği
-- `/cod` klasörü → Tüm cihazların (Core, Dist, Access, ASA, Router) yapılandırma kodları  
+- `/cod/` klasörü → Tüm cihazların (Core, Dist, Access, ASA, Router) yapılandırma kodları  
 
 ---
 
