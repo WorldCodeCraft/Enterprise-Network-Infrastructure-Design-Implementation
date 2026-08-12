@@ -10,7 +10,8 @@ Amaç; **ağ segmentasyonu, gateway/internet yedekliliği (Failover), güvenlik 
 
 ## 🌐 Cisco Network Diagram
 
-<img width="1379" height="667" alt="tasarım" src="https://github.com/user-attachments/assets/62b7b884-c924-442c-9b20-225d133d02af" />
+<img width="1379" height="667" alt="tasarım" src="https://github.com/user-attachments/assets/6fe459f1-e54c-47fb-9131-ec0436a5fc1d" />
+
 
 ---
 
