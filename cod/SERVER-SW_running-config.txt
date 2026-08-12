@@ -1,0 +1,188 @@
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname SERVER-SW
+!
+enable secret Batuhan2026
+!
+aaa new-model
+!
+aaa authentication login default group radius local
+!
+username aciladmin secret Batuhan2026
+!
+no ip domain-lookup
+ip domain-name merkez.local
+!
+spanning-tree mode pvst
+!
+vlan 10
+ name IT
+vlan 20
+ name HR
+vlan 30
+ name FINANCE
+vlan 40
+ name OPERATIONS
+vlan 50
+ name OFFICE
+vlan 60
+ name WIFI-IOT
+vlan 100
+ name SERVERS
+!
+no ip routing
+!
+ip ftp username admin
+ip ftp password Batuhan2026
+!
+interface FastEthernet0/1
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/2
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/3
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/4
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/5
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/6
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/7
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/8
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/9
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/10
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/11
+ shutdown
+!
+interface FastEthernet0/12
+ shutdown
+!
+interface FastEthernet0/13
+ shutdown
+!
+interface FastEthernet0/14
+ shutdown
+!
+interface FastEthernet0/15
+ shutdown
+!
+interface FastEthernet0/16
+ shutdown
+!
+interface FastEthernet0/17
+ shutdown
+!
+interface FastEthernet0/18
+ shutdown
+!
+interface FastEthernet0/19
+ shutdown
+!
+interface FastEthernet0/20
+ shutdown
+!
+interface FastEthernet0/21
+ shutdown
+!
+interface FastEthernet0/22
+ shutdown
+!
+interface FastEthernet0/23
+ shutdown
+!
+interface FastEthernet0/24
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface GigabitEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan100
+ description Server Farm Management
+ ip address 10.10.100.251 255.255.255.0
+ no shutdown
+!
+ip default-gateway 10.10.100.254
+logging 10.10.100.16
+logging trap debugging
+!
+snmp-server community Merkez_Secure2026 RO
+!
+radius-server host 10.10.100.19 auth-port 1645 key cisco123
+!
+ntp server 10.10.100.17
+!
+line con 0
+ password cisco123
+ logging synchronous
+ login
+ exec-timeout 5 0
+line aux 0
+line vty 0 4
+ password cisco123
+ login
+ exec-timeout 5 0
+line vty 5 15
+ password cisco123
+ login
+!
+end

@@ -1,0 +1,64 @@
+!
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname ISP1-RTR
+!
+no ip domain-lookup
+ip domain-name merkez.local
+!
+enable secret Batuhan2026
+!
+no ip cef
+no ipv6 cef
+!
+spanning-tree mode pvst
+!
+ip dhcp pool DIS_WIFI_1
+ network 192.168.100.0 255.255.255.0
+ default-router 192.168.100.1
+ dns-server 172.16.10.20
+!
+interface GigabitEthernet0/0
+ description connects to R1 G0/0
+ ip address 200.1.1.1 255.255.255.252
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description connects to Cloud ISP1
+ ip address 203.0.113.1 255.255.255.252
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface GigabitEthernet0/2
+ description connects to Wireless Router DIS 1
+ ip address 192.168.100.1 255.255.255.0
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip route 10.10.0.0 255.255.0.0 200.1.1.2
+ip route 172.16.10.0 255.255.255.0 200.1.1.2
+!
+line con 0
+ password cisco123
+ logging synchronous
+ login
+ exec-timeout 5 0
+line vty 0 4
+ password cisco123
+ login
+ exec-timeout 5 0
+line vty 5 15
+ password cisco123
+ login
+!
+end

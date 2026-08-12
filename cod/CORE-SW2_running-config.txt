@@ -1,0 +1,210 @@
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname CORE-SW2
+!
+enable secret Batuhan2026
+!
+no ip domain-lookup
+ip domain-name merkez.local
+!
+spanning-tree mode pvst
+!
+vlan 10
+ name IT
+vlan 20
+ name HR
+vlan 30
+ name FINANCE
+vlan 40
+ name OPERATIONS
+vlan 50
+ name OFFICE
+vlan 60
+ name WIFI-IOT
+vlan 100
+ name SERVERS
+!
+ip routing
+!
+interface FastEthernet0/1
+ switchport mode access
+ no shutdown
+!
+interface FastEthernet0/2
+ switchport mode access
+ no shutdown
+!
+interface FastEthernet0/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface FastEthernet0/4
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface FastEthernet0/5
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface FastEthernet0/6
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface FastEthernet0/7
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface FastEthernet0/8
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface FastEthernet0/9
+ shutdown
+!
+interface FastEthernet0/10
+ shutdown
+!
+interface FastEthernet0/11
+ shutdown
+!
+interface FastEthernet0/12
+ shutdown
+!
+interface FastEthernet0/13
+ shutdown
+!
+interface FastEthernet0/14
+ shutdown
+!
+interface FastEthernet0/15
+ shutdown
+!
+interface FastEthernet0/16
+ shutdown
+!
+interface FastEthernet0/17
+ shutdown
+!
+interface FastEthernet0/18
+ shutdown
+!
+interface FastEthernet0/19
+ shutdown
+!
+interface FastEthernet0/20
+ shutdown
+!
+interface FastEthernet0/21
+ shutdown
+!
+interface FastEthernet0/22
+ shutdown
+!
+interface FastEthernet0/23
+ shutdown
+!
+interface FastEthernet0/24
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shutdown
+!
+interface GigabitEthernet0/2
+ shutdown
+!
+interface Vlan1
+ ip address 10.10.1.20 255.255.255.0
+ no shutdown
+!
+interface Vlan10
+ description IT Department Gateway
+ ip address 10.10.10.253 255.255.255.0
+ ip helper-address 10.10.100.10
+ standby 10 ip 10.10.10.254
+ standby 10 preempt
+ no shutdown
+!
+interface Vlan20
+ description HR Department Gateway
+ ip address 10.10.20.253 255.255.255.0
+ ip helper-address 10.10.100.10
+ standby 20 ip 10.10.20.254
+ standby 20 preempt
+ no shutdown
+!
+interface Vlan30
+ description Finance Department Gateway
+ ip address 10.10.30.253 255.255.255.0
+ ip helper-address 10.10.100.10
+ standby 30 ip 10.10.30.254
+ standby 30 preempt
+ no shutdown
+!
+interface Vlan40
+ description Operations Department Gateway
+ ip address 10.10.40.253 255.255.255.0
+ ip helper-address 10.10.100.10
+ standby 40 ip 10.10.40.254
+ standby 40 preempt
+ no shutdown
+!
+interface Vlan50
+ description Office Department Gateway
+ ip address 10.10.50.253 255.255.255.0
+ ip helper-address 10.10.100.10
+ standby 50 ip 10.10.50.254
+ standby 50 preempt
+ no shutdown
+!
+interface Vlan60
+ description WiFi-IoT Gateway
+ ip address 10.10.60.253 255.255.255.0
+ ip helper-address 10.10.100.10
+ standby 60 ip 10.10.60.254
+ standby 60 preempt
+ no shutdown
+!
+interface Vlan100
+ description Server Farm Gateway
+ ip address 10.10.100.253 255.255.255.0
+ standby 100 ip 10.10.100.254
+ standby 100 preempt
+ no shutdown
+!
+ip route 0.0.0.0 0.0.0.0 10.10.1.2
+!
+logging 10.10.100.16
+logging trap debugging
+!
+snmp-server community Merkez_Secure2026 RO
+!
+ntp server 10.10.100.17
+!
+line con 0
+ password cisco123
+ logging synchronous
+ login
+ exec-timeout 5 0
+line aux 0
+line vty 0 4
+ password cisco123
+ login
+ exec-timeout 5 0
+line vty 5 15
+ password cisco123
+ login
+!
+end

@@ -1,0 +1,94 @@
+ASA Version 8.4(2)
+!
+hostname ASA2
+enable password Batuhan2026 encrypted
+passwd Batuhan2026 encrypted
+names
+!
+interface Ethernet0/0
+ description Uplink to R2 - Outside
+ switchport access vlan 2
+ no shutdown
+!
+interface Ethernet0/1
+ description Downlink to CORE-SW2 - Inside
+ switchport access vlan 1
+ no shutdown
+!
+interface Ethernet0/2
+ description DMZ to DMZ-SW Gi0/2
+ switchport access vlan 3
+ no shutdown
+!
+interface Ethernet0/3
+ description HA Link to ASA1
+ switchport access vlan 1
+ no shutdown
+!
+interface Ethernet0/4
+ description Downlink to CORE-SW1 - Inside
+ switchport access vlan 1
+ no shutdown
+!
+interface Ethernet0/5
+ switchport access vlan 1
+ no shutdown
+!
+interface Ethernet0/6
+ switchport access vlan 1
+ no shutdown
+!
+interface Ethernet0/7
+ switchport access vlan 1
+ no shutdown
+!
+interface Vlan1
+ nameif inside
+ security-level 100
+ ip address 10.10.1.2 255.255.255.0
+ no shutdown
+!
+interface Vlan2
+ nameif outside
+ security-level 0
+ ip address 192.168.2.2 255.255.255.252
+ no shutdown
+!
+interface Vlan3
+ no forward interface Vlan1
+ nameif dmz
+ security-level 50
+ ip address 172.16.10.2 255.255.255.0
+ no shutdown
+!
+object network INSIDE_NAT
+ subnet 10.10.0.0 255.255.0.0
+ nat (inside,outside) dynamic interface
+!
+route outside 0.0.0.0 0.0.0.0 192.168.2.1 1
+route inside 10.10.0.0 255.255.0.0 10.10.1.20 1
+!
+access-list OUT_TO_DMZ extended permit tcp any host 172.16.10.10 eq www
+access-list OUT_TO_DMZ extended permit tcp any host 172.16.10.10 eq 443
+access-list OUT_TO_DMZ extended permit tcp any host 172.16.10.11 eq smtp
+access-list OUT_TO_DMZ extended permit tcp any host 172.16.10.13 eq ftp
+access-list OUT_TO_DMZ extended permit udp any host 172.16.10.20 eq domain
+access-list OUT_TO_DMZ extended permit tcp any host 172.16.10.20 eq domain
+access-list OUT_TO_DMZ extended permit icmp any any echo-reply
+access-list OUT_TO_DMZ extended permit icmp any any echo
+!
+access-group OUT_TO_DMZ in interface outside
+!
+logging enable
+logging timestamp
+logging host inside 10.10.100.16
+logging trap informational
+!
+ntp server 10.10.100.17 source inside
+!
+telnet timeout 5
+ssh 10.10.0.0 255.255.0.0 inside
+ssh timeout 30
+!
+dhcpd auto_config outside
+!

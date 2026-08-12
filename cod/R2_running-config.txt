@@ -1,0 +1,64 @@
+!
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname R2
+!
+no ip domain-lookup
+ip domain-name merkez.local
+!
+enable secret Batuhan2026
+!
+no ip cef
+no ipv6 cef
+!
+spanning-tree mode pvst
+!
+interface GigabitEthernet0/0
+ description connects to ISP2-RTR G0/0
+ ip address 200.2.2.2 255.255.255.252
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description connects to ASA2 Eth0/0
+ ip address 192.168.2.1 255.255.255.252
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface GigabitEthernet0/2
+ description connects to R1 G0/2
+ ip address 192.168.12.2 255.255.255.252
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip route 0.0.0.0 0.0.0.0 200.2.2.1
+ip route 0.0.0.0 0.0.0.0 192.168.12.1 10
+ip route 10.10.0.0 255.255.0.0 192.168.2.2
+ip route 172.16.10.0 255.255.255.0 192.168.2.2
+!
+logging 10.10.100.16
+ntp server 10.10.100.17
+!
+line con 0
+ password cisco123
+ logging synchronous
+ login
+ exec-timeout 5 0
+line vty 0 4
+ password cisco123
+ login
+ exec-timeout 5 0
+line vty 5 15
+ password cisco123
+ login
+!
+end
