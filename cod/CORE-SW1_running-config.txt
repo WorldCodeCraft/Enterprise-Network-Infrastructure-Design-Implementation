@@ -191,6 +191,16 @@ interface Vlan100
  standby 100 preempt
  no shutdown
 !
+router ospf 1
+ network 10.10.1.0 0.0.0.255 area 0
+ network 10.10.10.0 0.0.0.255 area 0
+ network 10.10.20.0 0.0.0.255 area 0
+ network 10.10.30.0 0.0.0.255 area 0
+ network 10.10.40.0 0.0.0.255 area 0
+ network 10.10.50.0 0.0.0.255 area 0
+ network 10.10.60.0 0.0.0.255 area 0
+ network 10.10.100.0 0.0.0.255 area 0
+!
 ip route 0.0.0.0 0.0.0.0 10.10.1.1
 !
 logging 10.10.100.16
