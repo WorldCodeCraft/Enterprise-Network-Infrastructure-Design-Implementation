@@ -12,7 +12,6 @@ Amaç; **ağ segmentasyonu, gateway/internet yedekliliği (Failover), güvenlik 
 
 <img width="1379" height="667" alt="tasarım" src="https://github.com/user-attachments/assets/6fe459f1-e54c-47fb-9131-ec0436a5fc1d" />
 
-
 ---
 
 ## 🏢 Ağ Topolojisi
@@ -42,6 +41,7 @@ Amaç; **ağ segmentasyonu, gateway/internet yedekliliği (Failover), güvenlik 
 
 ## 🎯 Temel Özellikler
 - **HSRP & Floating Static Route** ile 0 kesintili yedeklilik (Failover)  
+- **OSPF (Open Shortest Path First)** ile Core mimarisinde dinamik yönlendirme (Area 0)  
 - ASA Firewall üzerinden **DMZ segmentasyonu** ve **NAT/PAT**  
 - L3 Switchler ile Inter-VLAN routing ve **DHCP Relay**  
 - 802.1Q Trunk bağlantılar üzerinden VLAN taşıma  
@@ -74,7 +74,9 @@ Amaç; **ağ segmentasyonu, gateway/internet yedekliliği (Failover), güvenlik 
 ---
 
 ## 📁 Dosya İçeriği
-- `/cod/` klasörü → Tüm cihazların (Core, Dist, Access, ASA, Router) yapılandırma kodları  
+- `/kod/` klasörü → Tüm cihazların (Core, Dist, Access, ASA, Router) yapılandırma kodları  
+- `proje_raporu.md` → Ağın mimarisini ve testlerini anlatan detaylı akademik rapor  
+- `Network_Topology.pkt` → Packet Tracer simülasyon dosyası  
 
 ---
 
