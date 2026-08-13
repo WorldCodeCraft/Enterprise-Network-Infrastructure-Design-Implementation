@@ -74,9 +74,7 @@ Amaç; **ağ segmentasyonu, gateway/internet yedekliliği (Failover), güvenlik 
 ---
 
 ## 📁 Dosya İçeriği
-- `/kod/` klasörü → Tüm cihazların (Core, Dist, Access, ASA, Router) yapılandırma kodları  
-- `proje_raporu.md` → Ağın mimarisini ve testlerini anlatan detaylı akademik rapor  
-- `Network_Topology.pkt` → Packet Tracer simülasyon dosyası  
+- `/cod/` klasörü → Tüm cihazların (Core, Dist, Access, ASA, Router) yapılandırma kodları    
 
 ---
 
